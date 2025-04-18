@@ -10,7 +10,7 @@ removeChargesFromRunes = true
 removeChargesFromPotions = true
 removeWeaponAmmunition = true
 removeWeaponCharges = true
-timeToDecreaseFrags = 24 * 60 * 60
+timeToDecreaseFrags = 3 * 60 * 60
 whiteSkullTime = 15 * 60
 stairJumpExhaustion = 2000
 experienceByKillingPlayers = false
@@ -32,7 +32,7 @@ allowWalkthrough = true
 serverName = "Forgotten"
 statusTimeout = 5000
 replaceKickOnLogin = true
-maxPacketsPerSecond = 25
+maxPacketsPerSecond = 100
 
 -- Deaths
 -- NOTE: Leave deathLosePercent as -1 if you want to use the default
@@ -116,7 +116,7 @@ serverSaveNotifyMessage = true
 serverSaveNotifyDuration = 5
 serverSaveCleanMap = false
 serverSaveClose = false
-serverSaveShutdown = true
+serverSaveShutdown = false
 
 -- Experience stages
 -- NOTE: to use a flat experience multiplier, set experienceStages to nil
@@ -128,7 +128,8 @@ experienceStages = {
 	{ minlevel = 9, maxlevel = 20, multiplier = 6 },
 	{ minlevel = 21, maxlevel = 50, multiplier = 5 },
 	{ minlevel = 51, maxlevel = 100, multiplier = 4 },
-	{ minlevel = 101, multiplier = 3 }
+	{ minlevel = 101, maxlevel = 120, multiplier = 3 },
+	{ minlevel = 121, multiplier = 2 }
 }
 
 -- Rates
@@ -163,7 +164,7 @@ defaultPriority = "high"
 startupDatabaseOptimization = false
 
 -- Status Server Information
-ownerName = ""
+ownerName = "Idler"
 ownerEmail = ""
 url = "https://otland.net/"
 location = "Sweden"
