@@ -5,12 +5,12 @@ DEFAULT_LAYOUT = "retro" -- on android it's forced to "mobile", check code bello
 
 -- If you don't use updater or other service, set it to updater = ""
 Services = {
-  website = "http://otclient.ovh", -- currently not used
-  updater = "http://otclient.ovh/api/updater.php",
+  website = "", -- currently not used
+  updater = "",
   stats = "",
-  crash = "http://otclient.ovh/api/crash.php",
-  feedback = "http://otclient.ovh/api/feedback.php",
-  status = "http://otclient.ovh/api/status.php"
+  crash = "",
+  feedback = "",
+  status = ""
 }
 
 -- Servers accept http login url, websocket login url or ip:port:version
@@ -22,6 +22,10 @@ Servers = {
   Evoulinia = "evolunia.net:7171:1098",
   GarneraTest = "garnera-global.net:7171:1100",
   LocalTestServ = "127.0.0.1:7171:1098:110:30:93"  ]]
+  testserver = "127.0.0.1:7171:772"
+  
+  
+  
 }
 
 --Server = "ws://otclient.ovh:3000/"
