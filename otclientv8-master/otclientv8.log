@@ -6,3 +6,14 @@ Found work dir at 'D:/NEKIRO ALL/z_nekirodowngrade_772/otclientv8-master/'
 OTCv8 3.2 rev 4 (dev) made by otclient.net built on Feb 26 2023 for arch x86
 Exiting application..
 WARNING: widget 'widget1316' was not explicitly destroyed
+GPU NVIDIA GeForce RTX 2070 SUPER/PCIe/SSE2 (NVIDIA Corporation)
+OpenGL 4.6.0 NVIDIA 576.02
+[Atlas] Texture size is: 4096x4096 (max: 32768x32768)
+Found work dir at 'D:/NEKIRO ALL/z_nekirodowngrade_772/otclientv8-master/'
+== application started at Apr 18 2025 12:00:01
+OTCv8 3.2 rev 4 (dev) made by otclient.net built on Feb 26 2023 for arch x86
+Connecting to: 127.0.0.1:7171
+Login to 127.0.0.1:7172
+Minimap couldn't be loaded, file missing?
+Exiting application..
+WARNING: widget 'widget1316' was not explicitly destroyed
