@@ -40,6 +40,9 @@ uint32_t Item::mapVersion = 1; //default map version for 7.72
 
 Item* Item::CreateItem(const uint16_t type, uint16_t count /*= 0*/)
 {
+	//TOOLTIPS
+	static uint32_t lastRealUID = 0;
+	//TOOLTIPS END
 	Item* newItem = nullptr;
 
 	const ItemType& it = Item::items[type];
@@ -83,6 +86,12 @@ Item* Item::CreateItem(const uint16_t type, uint16_t count /*= 0*/)
 		} else {
 			newItem = new Item(type, count);
 		}
+
+		//TOOLTIPS
+		if (it.pickupable) {
+			newItem->setRealUID(++lastRealUID);
+		}
+		//TOOLTIPS END
 
 		newItem->incrementReferenceCounter();
 	}

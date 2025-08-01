@@ -1097,7 +1097,7 @@ void Player::onCreatureAppear(Creature* creature, bool isLogin)
 		}
 
 		// load mount speed bonus
-		/*uint16_t currentMountId = currentOutfit.lookMount;
+		uint16_t currentMountId = currentOutfit.lookMount;
 		if (currentMountId != 0) {
 			Mount* currentMount = g_game.mounts.getMountByClientID(currentMountId);
 			if (currentMount && hasMount(currentMount)) {
@@ -1110,7 +1110,7 @@ void Player::onCreatureAppear(Creature* creature, bool isLogin)
 
 		// mounted player moved to pz on login, update mount status
 		onChangeZone(getZone());
-		*/
+		
 
 		if (g_config.getBoolean(ConfigManager::PLAYER_CONSOLE_LOGS)) {
 			std::cout << name << " has logged in." << std::endl;
@@ -1260,10 +1260,10 @@ void Player::onRemoveCreature(Creature* creature, bool isLogout)
 	}
 }
 
-void Player::openShopWindow(Npc* npc, const std::list<ShopInfo>& shop)
+void Player::openShopWindow(const std::list<ShopInfo>& shop)
 {
 	shopItemList = shop;
-	sendShop(npc);
+	sendShop();
 	sendSaleItemList();
 }
 
@@ -3410,9 +3410,9 @@ void Player::onAddCondition(ConditionType_t type)
 {
 	Creature::onAddCondition(type);
 
-	/*if (type == CONDITION_OUTFIT && isMounted()) {
+	if (type == CONDITION_OUTFIT) {
 		dismount();
-	}*/
+	}
 
 	sendIcons();
 }
@@ -4372,6 +4372,9 @@ void Player::dismount()
 	defaultOutfit.lookMount = 0;
 }
 
+
+
+
 bool Player::addOfflineTrainingTries(skills_t skill, uint64_t tries)
 {
 	if (tries == 0 || skill == SKILL_LEVEL) {
@@ -4676,3 +4679,34 @@ void Player::updateRegeneration()
 		condition->setParam(CONDITION_PARAM_MANATICKS, vocation->getManaGainTicks() * 1000);
 	}
 }
+
+
+//TOOLTIPS
+Item* Player::getItemByUID(uint32_t uid) const {
+	if (uid == 0) {
+		return nullptr;
+	}
+
+	std::vector<Item*> itemList;
+
+	for (int32_t i = CONST_SLOT_FIRST; i <= CONST_SLOT_LAST; i++) {
+		Item* item = inventory[i];
+		if (!item) {
+			continue;
+		}
+
+		if (item->getRealUID() == uid) {
+			return item;
+		}
+		else if (Container* container = item->getContainer()) {
+			for (ContainerIterator it = container->iterator(); it.hasNext(); it.advance()) {
+				Item* containerItem = *it;
+				if (containerItem->getRealUID() == uid) {
+					return containerItem;
+				}
+			}
+		}
+	}
+	return nullptr;
+}
+//TOOLTIPSEND

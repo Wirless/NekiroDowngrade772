@@ -756,6 +756,11 @@ class LuaScriptInterface
 		static int luaItemSetStoreItem(lua_State* L);
 		static int luaItemIsStoreItem(lua_State* L);
 
+
+		//TOOLTIPS
+		static int luaItemGetRealUID(lua_State* L);
+		//TOOLTIPS END
+
 		// Container
 		static int luaContainerCreate(lua_State* L);
 
@@ -1034,6 +1039,11 @@ class LuaScriptInterface
 
 		static int luaPlayerGetStoreInbox(lua_State* L);
 
+
+		//TOOLTIPS
+		static int luaPlayerGetItem(lua_State* L);
+		//TOOLTIPSEND
+
 		// Monster
 		static int luaMonsterCreate(lua_State* L);
 
@@ -1253,6 +1263,22 @@ class LuaScriptInterface
 		static int luaItemTypeHasSubType(lua_State* L);
 
 		static int luaItemTypeIsStoreItem(lua_State* L);
+
+
+		//TOOLTIPS
+
+		static int luaItemTypeGetSpecialSkill(lua_State* L);
+		static int luaItemTypeGetAbsorbPercent(lua_State* L);
+		static int luaItemTypeGetSkill(lua_State* L);
+		static int luaItemTypeGetSpeed(lua_State* L);
+		static int luaItemTypeGetStat(lua_State* L);
+		static int luaItemTypeGetStatPercent(lua_State* L);
+		static int luaItemTypeGetHealthGain(lua_State* L);
+		static int luaItemTypeGetHealthTicks(lua_State* L);
+		static int luaItemTypeGetManaGain(lua_State* L);
+		static int luaItemTypeGetManaTicks(lua_State* L);
+
+		//TOOLTIPSEND
 
 		// Combat
 		static int luaCombatCreate(lua_State* L);

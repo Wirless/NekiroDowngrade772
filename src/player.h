@@ -36,6 +36,9 @@
 #include "groups.h"
 #include "town.h"
 #include "mounts.h"
+#include "auras.h"
+#include "wings.h"
+#include "shaders.h"
 #include "storeinbox.h"
 
 #include <bitset>
@@ -155,14 +158,41 @@ class Player final : public Creature, public Cylinder
 
 		uint8_t getCurrentMount() const;
 		void setCurrentMount(uint8_t mountId);
-		bool isMounted() const {
+		bool isMounted() const
+		{
 			return defaultOutfit.lookMount != 0;
 		}
+		bool hasMount() const
+		{
+			return defaultOutfit.lookMount != 0;
+		}
+		bool hasAura() const
+		{
+			return defaultOutfit.lookAura != 0;
+		}
+		bool hasWings() const
+		{
+			return defaultOutfit.lookWings != 0;
+		}
+		bool hasShader() const
+		{
+			return defaultOutfit.lookShader != 0;
+		}
+
 		bool toggleMount(bool mount);
 		bool tameMount(uint8_t mountId);
 		bool untameMount(uint8_t mountId);
 		bool hasMount(const Mount* mount) const;
 		void dismount();
+		bool hasWing(const Wing* wing) const;
+		uint8_t getCurrentAura() const;
+		void setCurrentAura(uint8_t auraId);
+		bool hasAura(const Aura* aura) const;
+		uint8_t getCurrentWing() const;
+		void setCurrentWing(uint8_t wingId);
+		bool hasShader(const Shader* shader) const;
+
+
 
 		void sendFYIBox(const std::string& message) {
 			if (client) {
@@ -572,7 +602,7 @@ class Player final : public Creature, public Cylinder
 		void onWalkComplete() override;
 
 		void stopWalk();
-		void openShopWindow(Npc* npc, const std::list<ShopInfo>& shop);
+		void openShopWindow(const std::list<ShopInfo>& shop);
 		bool closeShopWindow(bool sendCloseShopWindow = true);
 		bool updateSaleShopList(const Item* item);
 		bool hasShopItemForSale(uint32_t itemId, uint8_t subType) const;
@@ -997,9 +1027,9 @@ class Player final : public Creature, public Cylinder
 				client->sendToChannel(creature, type, text, channelId);
 			}
 		}
-		void sendShop(Npc* npc) const {
+		void sendShop() const {
 			if (client) {
-				client->sendShop(npc, shopItemList);
+				client->sendShop(shopItemList);
 			}
 		}
 		void sendSaleItemList() const {
@@ -1160,6 +1190,7 @@ class Player final : public Creature, public Cylinder
 		bool hasLearnedInstantSpell(const std::string& spellName) const;
 
 		void updateRegeneration();
+		Item* getItemByUID(uint32_t uid) const;
 
 	private:
 		std::forward_list<Condition*> getMuteConditions() const;
